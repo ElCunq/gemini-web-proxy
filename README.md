@@ -191,7 +191,7 @@ The proxy includes advanced prompt engineering to ensure Gemini properly formats
 
 ## Contributing
 
-This is an educational project. Feel free to fork and experiment, but please respect Google's terms of service.
+This is an educational project. Feel free to fork and experiment.
 
 ## License
 
