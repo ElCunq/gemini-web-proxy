@@ -95,8 +95,31 @@ Add this configuration to your OpenCode config file:
 
 ### Step 5: Set as Default Model
 
+Add the model to your OpenCode config file:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "providers": {
+    "00bx-gemini": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:8080/v1",
+        "apiKey": "not-needed"
+      },
+      "models": {
+        "00bx-gemini-web": {}
+      }
+    }
+  },
+  "model": "00bx-gemini/00bx-gemini-web"
+}
+```
+
+Or use the command line flag:
+
 ```bash
-opencode config set model 00bx-gemini/00bx-gemini-web
+opencode -m 00bx-gemini/00bx-gemini-web
 ```
 
 ## Usage
