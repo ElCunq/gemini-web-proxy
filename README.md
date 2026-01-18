@@ -74,7 +74,7 @@ On first run:
 
 Add this configuration to your OpenCode config file:
 
-**Location**: `~/.config/opencode/config.json` or your project's `opencode.json`
+**Location**: `~/.config/opencode/opencode.json` or your project's `opencode.json`
 
 ```json
 {
