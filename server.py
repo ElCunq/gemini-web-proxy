@@ -101,7 +101,7 @@ async def init_browser():
     context = await playwright_instance.chromium.launch_persistent_context(
         user_data_dir=str(PROFILE_DIR),
         headless=False,
-        channel="chrome",
+        channel="chromium",
         args=[
             "--disable-blink-features=AutomationControlled",
             "--disable-extensions",
