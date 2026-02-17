@@ -1,23 +1,17 @@
 services:
   gemini-web-proxy:
-    image: mcr.microsoft.com/playwright:v1.41.0-jammy # Playwright kütüphaneleri yüklü resmi imaj
+    # 👇 İmajın sonuna '/python' ekliyoruz
+    image: mcr.microsoft.com/playwright/python:v1.41.0-jammy 
     container_name: gemini_web_proxy
     working_dir: /app
+    # 👇 Python3 ve Pip'in tam yolunu garantiye alıyoruz
     command: >
-      bash -c "pip install -r requirements.txt && python run.py"
+      bash -c "python3 -m pip install --upgrade pip && python3 -m pip install -r requirements.txt && python3 run.py"
     volumes:
-      - .:/app # Repo içeriğini buraya bağlar
-      - gemini_service_data:/root/.gemini-service # Oturum verilerini burada saklayacağız
+      - .:/app
+      - gemini_service_data:/root/.gemini-service
     ports:
-      - "8081:8080"
+      - "8081:8080" # Port çakışması olmaması için 8081'de tutabilirsin
     networks:
       - coolify
     restart: always
-
-volumes:
-  gemini_service_data: # Kalıcı veri alanı
-    external: false
-
-networks:
-  coolify:
-    external: true
