@@ -1,0 +1,23 @@
+services:
+  gemini-web-proxy:
+    image: mcr.microsoft.com/playwright:v1.41.0-jammy # Playwright kütüphaneleri yüklü resmi imaj
+    container_name: gemini_web_proxy
+    working_dir: /app
+    command: >
+      bash -c "pip install -r requirements.txt && python run.py"
+    volumes:
+      - .:/app # Repo içeriğini buraya bağlar
+      - gemini_service_data:/root/.gemini-service # Oturum verilerini burada saklayacağız
+    ports:
+      - "8080:8080"
+    networks:
+      - coolify
+    restart: always
+
+volumes:
+  gemini_service_data: # Kalıcı veri alanı
+    external: false
+
+networks:
+  coolify:
+    external: true
