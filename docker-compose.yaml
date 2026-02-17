@@ -1,12 +1,11 @@
 services:
   gemini-web-proxy:
-    # 1. Python ve Playwright'ın bir arada olduğu kesin imaj
-    image: mcr.microsoft.com/playwright/python:v1.41.0-jammy 
+    image: mcr.microsoft.com/playwright/python:v1.41.0-jammy
     container_name: gemini_web_proxy
     working_dir: /app
-    # 2. Pip yerine python3 -m pip kullanarak yolu garantiye alıyoruz
+    # 👇 Önce dosyaları listeleyip sonra yüklemeyi deniyoruz
     command: >
-      bash -c "python3 -m pip install --no-cache-dir -r requirements.txt && python3 run.py"
+      bash -c "ls -la /app && python3 -m pip install -r requirements.txt && python3 run.py"
     volumes:
       - .:/app
       - gemini_service_data:/root/.gemini-service
