@@ -1,13 +1,10 @@
 services:
   gemini-web-proxy:
-    image: mcr.microsoft.com/playwright/python:v1.41.0-jammy
+    # 'image' yerine 'build' kullanıyoruz, Coolify Dockerfile'ı okuyacak
+    build: . 
     container_name: gemini_web_proxy
-    working_dir: /app
-    # 👇 Önce dosyaları listeleyip sonra yüklemeyi deniyoruz
-    command: >
-      bash -c "ls -la /app && python3 -m pip install -r requirements.txt && python3 run.py"
     volumes:
-      - .:/app
+      # Sadece oturum verisi kalıcı kalsın, kodlar zaten imajın içinde
       - gemini_service_data:/root/.gemini-service
     ports:
       - "8081:8080"
